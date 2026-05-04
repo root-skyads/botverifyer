@@ -2,226 +2,245 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Congratulations!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Access - Exclusive Offer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #FFB800;
+            --primary-glow: rgba(255, 184, 0, 0.5);
+            --bg-milky: #f0f4f8;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: var(--bg-milky);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 184, 0, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 184, 0, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            text-align: center;
+            overflow: hidden;
         }
 
-        .content {
-            max-width: 500px;
+        /* Animated Floating Bubbles for Game-like feel */
+        .bubble {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.4;
+            filter: blur(40px);
+            z-index: -1;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+
+        .b1 { width: 300px; height: 300px; top: -100px; left: -100px; background: var(--primary); }
+        .b2 { width: 250px; height: 250px; bottom: -50px; right: -50px; background: #3b82f6; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+
+        .container {
+            max-width: 420px;
             width: 100%;
-            padding: 20px;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .icon-wrapper {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .icon-bg {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            animation: bounce 3s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .icon-bg svg {
+            width: 50px;
+            height: 50px;
+            color: var(--primary);
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: #0d1a36;
-            line-height: 1.3;
-        }
-
-        .timer-container {
-            background: #e8f5e9;
-            border: 2px solid #2e9c4a;
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 32px;
-            display: inline-block;
-            min-width: 140px;
-        }
-
-        .timer-text {
-            font-size: 1.05rem;
-            color: #1b5e20;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        #countdown {
-            font-size: 2.4rem;
+            font-size: 32px;
             font-weight: 800;
-            color: #d32f2f;
-            line-height: 1;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.1;
         }
 
-        .btn {
-            background: #0d6e2e;
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.35rem;
-            font-weight: 700;
-            border-radius: 8px;
+        p {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .cta-container {
+            position: relative;
+        }
+
+        .main-btn {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: #000;
+            text-decoration: none;
+            padding: 24px 30px;
+            border-radius: 24px;
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 0 #d97706, 0 20px 40px rgba(255, 184, 0, 0.3);
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            transition: all 0.25s ease;
-            display: inline-flex;
+            border: none;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #d97706, 0 25px 50px rgba(255, 184, 0, 0.4);
+        }
+
+        .main-btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #d97706, 0 10px 20px rgba(255, 184, 0, 0.2);
+        }
+
+        /* Sparkle effects */
+        .sparkle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .trust-signal {
+            margin-top: 30px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            text-decoration: none;
-            box-shadow: 0 4px 14px rgba(13, 110, 46, 0.35);
-            min-height: 60px;
-            width: 100%;
-            max-width: 380px;
-            touch-action: manipulation;
-            -webkit-tap-highlight-color: transparent;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
         }
 
-        .btn:hover {
-            background: #0a5a24;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(13, 110, 46, 0.45);
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
         }
 
-        .btn:active {
-            transform: translateY(1px);
-            box-shadow: 0 2px 10px rgba(13, 110, 46, 0.3);
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        .btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .footer {
-            margin-top: 45px;
-            font-size: 0.85rem;
-            color: #d32f2f;
-            line-height: 1.5;
-        }
-
-        .footer a {
-            color: #d32f2f;
-            text-decoration: none;
-            border-bottom: 1px solid #d32f2f;
-            padding-bottom: 2px;
-        }
-
-        .footer a:hover {
-            opacity: 0.85;
-        }
-
-        /* Responsive adjustments */
+        /* Mobile specific */
         @media (max-width: 480px) {
-            h1 {
-                font-size: 1.9rem;
-                margin-bottom: 20px;
+            .container {
+                padding: 40px 24px;
+                border-radius: 32px;
             }
-            .timer-container {
-                padding: 12px;
-                min-width: 130px;
-            }
-            .timer-text {
-                font-size: 1rem;
-            }
-            #countdown {
-                font-size: 2.2rem;
-            }
-            .btn {
-                padding: 18px 32px;
-                font-size: 1.25rem;
-                max-width: 100%;
-            }
-            .footer {
-                font-size: 0.82rem;
-                margin-top: 40px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .content {
-                padding: 16px;
-            }
-            h1 {
-                font-size: 1.75rem;
-            }
-            #countdown {
-                font-size: 2rem;
-            }
-            .btn {
-                padding: 17px 28px;
-                font-size: 1.2rem;
-            }
+            h1 { font-size: 28px; }
+            p { font-size: 16px; }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Congratulations!!</h1>
 
-        <div class="timer-container">
-            <div class="timer-text">Time remaining:</div>
-            <div id="countdown">5</div>
-            <div class="timer-text">Click on "START NOW" to cash out!</div>
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+
+    <div class="container">
+        <div class="icon-wrapper">
+            <div class="icon-bg">
+                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+            </div>
         </div>
 
-        <button class="btn" id="startBtn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14 17l-5-5 5-5z"/>
-            </svg>
-            START NOW
-        </button>
+        <h1>Ready to Claim Your Reward?</h1>
+        <p>A personalized offer has been generated based on your profile. Access is limited and will expire shortly.</p>
 
-        <div class="footer">
-            © 2026. All rights reserved. | 
-            <a href="https://malawiansadsversion3.blogspot.com/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> | 
-            <a href="#" onclick="alert('Terms & Conditions Apply'); return false;">Terms & Conditions Apply</a>
+        <div class="cta-container">
+            <a href="https://1buv.com/link?z=10462815&var={SOURCE_ID}&ymid={CLICK_ID}" class="main-btn" id="final-cta">
+                Claim Access Now
+            </a>
+        </div>
+
+        <div class="trust-signal">
+            <div class="dot"></div>
+            <span>Limited availability left</span>
         </div>
     </div>
 
     <script>
-        // 5-second countdown with auto-redirect
-        let seconds = 5;
-        const countdownEl = document.getElementById('countdown');
-        const btn = document.getElementById('startBtn');
-        let timerRunning = true;
-
-        // Update display immediately
-        countdownEl.textContent = seconds;
-
-        // Start countdown
-        const interval = setInterval(() => {
-            if (!timerRunning) {
-                clearInterval(interval);
-                return;
-            }
-
-            seconds--;
-            countdownEl.textContent = seconds;
-        }, 1000);
-
-        // Button click handler (instant redirect, stops timer)
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            timerRunning = false;
-            clearInterval(interval);
-            window.location.href = 'https://1buv.com/link?z=10462815&var={SOURCE_ID}&ymid={CLICK_ID}';
-        }, { passive: true });
-
-        // Prevent accidental back navigation on mobile
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', function() {
-            history.pushState(null, null, location.href);
+        // Game-like click effect
+        document.querySelector('.main-btn').addEventListener('click', function(e) {
+            // Optional: Add a quick loading state before redirect
+            const btn = e.target;
+            btn.innerHTML = "Opening Invite...";
+            btn.style.pointerEvents = "none";
         });
+
+        // URL Parameter handling
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sourceId = urlParams.get('source_id') || 'tiktok_ad';
+            const clickId = urlParams.get('click_id') || 'direct_visitor';
+            
+            const cta = document.getElementById('final-cta');
+            let href = cta.getAttribute('href');
+            href = href.replace('{SOURCE_ID}', sourceId).replace('{CLICK_ID}', clickId);
+            cta.setAttribute('href', href);
+        };
     </script>
 </body>
 </html>
