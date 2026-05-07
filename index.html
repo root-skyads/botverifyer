@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant Access - Exclusive Offer</title>
+    <title>Exclusive Network Rewards | Claim Now</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FFB800;
-            --primary-glow: rgba(255, 184, 0, 0.5);
-            --bg-milky: #f0f4f8;
-            --glass: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.5);
-            --text-dark: #1e293b;
-            --text-muted: #64748b;
+            --primary: #FFD700;
+            --secondary: #00A651; /* Econet Green */
+            --accent: #0033A0;    /* NetOne Blue */
+            --danger: #E60000;    /* Telecel Red */
+            --bg-dark: #0a0a0c;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
         }
 
         * {
@@ -26,221 +27,523 @@
         }
 
         body {
-            background-color: var(--bg-milky);
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(255, 184, 0, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(255, 184, 0, 0.1) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.1) 0px, transparent 50%);
+                radial-gradient(circle at 20% 30%, rgba(26, 60, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 204, 0, 0.1) 0%, transparent 40%);
+            color: var(--text);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
-        /* Animated Floating Bubbles for Game-like feel */
-        .bubble {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.4;
-            filter: blur(40px);
-            z-index: -1;
-            animation: float 20s infinite alternate ease-in-out;
-        }
-
-        .b1 { width: 300px; height: 300px; top: -100px; left: -100px; background: var(--primary); }
-        .b2 { width: 250px; height: 250px; bottom: -50px; right: -50px; background: #3b82f6; }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
-        }
-
-        .container {
-            max-width: 420px;
+        /* Ambient Background Animation */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.5;
+        }
+
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(110%, 110%); }
+        }
+
+        /* Container & Glassmorphism */
+        .app-container {
+            width: 90%;
+            max-width: 450px;
             background: var(--glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 2px solid var(--glass-border);
-            border-radius: 40px;
-            padding: 50px 30px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
             text-align: center;
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 10;
         }
 
-        .icon-wrapper {
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .icon-bg {
-            width: 100px;
-            height: 100px;
-            background: white;
-            border-radius: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
-            animation: bounce 3s infinite ease-in-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .icon-bg svg {
-            width: 50px;
-            height: 50px;
+        /* Header Styles */
+        .badge {
+            background: rgba(255, 215, 0, 0.1);
             color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            line-height: 1.1;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            background: linear-gradient(to bottom, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        p {
-            font-size: 18px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 40px;
+        p.subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin-bottom: 32px;
         }
 
-        .cta-container {
-            position: relative;
+        /* Game Elements: Network Grid */
+        .network-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
-        .main-btn {
-            display: block;
-            width: 100%;
-            background: var(--primary);
-            color: #000;
-            text-decoration: none;
-            padding: 24px 30px;
-            border-radius: 24px;
-            font-size: 20px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 0 #d97706, 0 20px 40px rgba(255, 184, 0, 0.3);
-            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .network-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
             cursor: pointer;
-            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
 
-        .main-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 0 #d97706, 0 25px 50px rgba(255, 184, 0, 0.4);
+        .network-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .main-btn:active {
-            transform: translateY(6px);
-            box-shadow: 0 4px 0 #d97706, 0 10px 20px rgba(255, 184, 0, 0.2);
+        .network-card.econet:hover { border-color: var(--secondary); box-shadow: 0 0 20px rgba(0, 166, 81, 0.2); }
+        .network-card.netone:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(0, 51, 160, 0.2); }
+        .network-card.telecel:hover { border-color: var(--danger); box-shadow: 0 0 20px rgba(230, 0, 0, 0.2); }
+        .network-card.airtel:hover { border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.2); }
+        .network-card.mtn:hover { border-color: #ffcc00; box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); }
+        .network-card.zamtel:hover { border-color: #00833e; box-shadow: 0 0 20px rgba(0, 131, 62, 0.2); }
+
+        .network-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
-        /* Sparkle effects */
-        .sparkle {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .trust-signal {
-            margin-top: 30px;
+        .network-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            font-weight: 800;
             font-size: 14px;
+            color: #fff;
+        }
+
+        .econet .network-icon { background: var(--secondary); }
+        .netone .network-icon { background: var(--accent); }
+        .telecel .network-icon { background: var(--danger); }
+        .airtel .network-icon { background: #ff0000; }
+        .mtn .network-icon { background: #ffcc00; color: #000; }
+        .zamtel .network-icon { background: #00833e; }
+
+        .network-name {
             font-weight: 600;
-            color: var(--text-muted);
+            font-size: 17px;
+        }
+
+        .unlock-label {
+            font-size: 11px;
+            color: var(--primary);
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        /* Loading / Scanning View */
+        .view-hidden {
+            display: none;
+        }
+
+        .scanner-box {
+            padding: 40px 0;
+        }
+
+        .radar {
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .radar::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .scanning-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 15px var(--primary);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+
+        /* Success View */
+        .reward-amount {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 18px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 16px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Urgency Footer */
+        .footer-info {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .stat-item span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Ticker Notification */
+        .notification-ticker {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13px;
+            white-space: nowrap;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideUp 0.5s ease-out;
+            transition: opacity 0.5s;
         }
 
         .dot {
             width: 8px;
             height: 8px;
-            background: #10b981;
+            background: #00ff00;
             border-radius: 50%;
-            animation: pulse 1s infinite;
+            box-shadow: 0 0 10px #00ff00;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes slideUp {
+            from { transform: translate(-50%, 50px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
         }
 
-        /* Mobile specific */
-        @media (max-width: 480px) {
-            .container {
-                padding: 40px 24px;
-                border-radius: 32px;
-            }
-            h1 { font-size: 28px; }
-            p { font-size: 16px; }
+        /* Confetti Canvas */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-    <div class="bubble b1"></div>
-    <div class="bubble b2"></div>
+    <div class="ambient-bg">
+        <div class="blob"></div>
+    </div>
 
-    <div class="container">
-        <div class="icon-wrapper">
-            <div class="icon-bg">
-                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+    <canvas id="confetti"></canvas>
+
+    <!-- STEP 1: SELECT NETWORK -->
+    <div class="app-container" id="step1">
+        <div class="badge">Limited Offer</div>
+        <h1>Unlock Your Reward</h1>
+        <p class="subtitle">Select your network to scan for available data & airtime bonuses.</p>
+
+        <div class="network-grid" style="grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="network-card econet" onclick="startScan('Econet')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">E</div>
+                    <span class="network-name" style="font-size: 14px;">Econet</span>
+                </div>
+            </div>
+            <div class="network-card netone" onclick="startScan('NetOne')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">N</div>
+                    <span class="network-name" style="font-size: 14px;">NetOne</span>
+                </div>
+            </div>
+            <div class="network-card telecel" onclick="startScan('Telecel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">T</div>
+                    <span class="network-name" style="font-size: 14px;">Telecel</span>
+                </div>
+            </div>
+            <div class="network-card airtel" onclick="startScan('Airtel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">A</div>
+                    <span class="network-name" style="font-size: 14px;">Airtel</span>
+                </div>
+            </div>
+            <div class="network-card mtn" onclick="startScan('MTN')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">M</div>
+                    <span class="network-name" style="font-size: 14px;">MTN</span>
+                </div>
+            </div>
+            <div class="network-card zamtel" onclick="startScan('Zamtel')" style="padding: 12px;">
+                <div class="network-info" style="flex-direction: column; gap: 8px; text-align: center; width: 100%;">
+                    <div class="network-icon">Z</div>
+                    <span class="network-name" style="font-size: 14px;">Zamtel</span>
+                </div>
             </div>
         </div>
 
-        <h1>Ready to Claim Your Reward?</h1>
-        <p>A personalized offer has been generated based on your profile. Access is limited and will expire shortly.</p>
-
-        <div class="cta-container">
-            <a href="https://ln.run/i3oO2" class="main-btn" id="final-cta">
-                Start Now
-            </a>
-        </div>
-
-        <div class="trust-signal">
-            <div class="dot"></div>
-            <span>Limited availability left</span>
+        <div class="footer-info">
+            <div class="stats">
+                <div class="stat-item">Remaining: <span id="slots">87</span></div>
+                <div class="stat-item">Expires: <span id="timer">04:59</span></div>
+            </div>
         </div>
     </div>
 
-    <script>
-        // Game-like click effect
-        document.querySelector('.main-btn').addEventListener('click', function(e) {
-            // Optional: Add a quick loading state before redirect
-            const btn = e.target;
-            btn.innerHTML = "Opening Invite...";
-            btn.style.pointerEvents = "none";
-        });
+    <!-- STEP 2: SCANNING -->
+    <div class="app-container view-hidden" id="step2">
+        <div class="badge" id="scan-badge">Scanning...</div>
+        <h1 id="scan-title">Detecting Econet</h1>
+        <div class="scanner-box">
+            <div class="radar">
+                <div class="scanning-line"></div>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <p id="progress-text" style="color: var(--primary); font-weight: 600;">Connecting to server...</p>
+        </div>
+    </div>
 
-        // URL Parameter handling
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sourceId = urlParams.get('source_id') || 'tiktok_ad';
-            const clickId = urlParams.get('click_id') || 'direct_visitor';
-            
-            const cta = document.getElementById('final-cta');
-            let href = cta.getAttribute('href');
-            href = href.replace('{SOURCE_ID}', sourceId).replace('{CLICK_ID}', clickId);
-            cta.setAttribute('href', href);
-        };
+    <!-- STEP 3: SUCCESS -->
+    <div class="app-container view-hidden" id="step3">
+        <div class="badge" style="background: rgba(0, 255, 0, 0.1); color: #00ff00; border-color: rgba(0, 255, 0, 0.2);">Verification Success</div>
+        <h1>CONGRATULATIONS!</h1>
+        <p class="subtitle" id="congrats-text">We found an exclusive bonus for your number</p>
+        
+        <div class="reward-amount">15GB + $50</div>
+        <p style="font-size: 14px; opacity: 0.7;">Airtime & Data Reward</p>
+
+        <button class="cta-button" onclick="finalize()">Claim Reward Now</button>
+        
+        <p style="font-size: 11px; margin-top: 15px; opacity: 0.5;">* Bonus must be claimed within 5 minutes</p>
+    </div>
+
+    <div class="notification-ticker" id="ticker">
+        <div class="dot"></div>
+        <span id="ticker-text">+263***4521 just received 10GB bonus</span>
+    </div>
+
+    <script>
+        const offerLink = "https://ln.run/C_zod";
+        
+        // Timer Logic
+        let time = 300; // 5 minutes
+        const timerEl = document.getElementById('timer');
+        setInterval(() => {
+            if(time > 0) {
+                time--;
+                let m = Math.floor(time / 60);
+                let s = time % 60;
+                timerEl.innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            }
+        }, 1000);
+
+        // Slots Logic
+        let slots = 87;
+        setInterval(() => {
+            if(slots > 5) {
+                slots -= Math.floor(Math.random() * 2);
+                document.getElementById('slots').innerText = slots;
+            }
+        }, 8000);
+
+        // Ticker Logic
+        const testimonies = [
+            "+263***4521 just received 10GB and $20 airtime",
+            "+260***1124 just received 15GB and $50 airtime",
+            "+263***9932 just received 5GB and $10 airtime",
+            "+260***8842 just received 10GB and $30 airtime",
+            "+263***7710 just received 15GB and $50 airtime",
+            "+260***6621 just received 5GB and $10 airtime",
+            "+263***6284 just received 2GB and $5 airtime",
+            "+263***3345 just received 10GB and $30 airtime",
+            "+260***9921 just received 15GB and $50 airtime"
+        ];
+        
+        setInterval(() => {
+            const ticker = document.getElementById('ticker');
+            ticker.style.opacity = '0';
+            setTimeout(() => {
+                const random = Math.floor(Math.random() * testimonies.length);
+                document.getElementById('ticker-text').innerText = testimonies[random];
+                ticker.style.opacity = '1';
+            }, 500);
+        }, 5000);
+
+        // Game Flow
+        function startScan(network) {
+            document.getElementById('step1').classList.add('view-hidden');
+            document.getElementById('step2').classList.remove('view-hidden');
+            document.getElementById('scan-title').innerText = `Scanning ${network}`;
+
+            const progressSteps = [
+                "Locating network tower...",
+                "Verifying SIM eligibility...",
+                "Checking reward pool...",
+                "Generating secure link...",
+                "Bonus found!"
+            ];
+
+            let p = 0;
+            const progressInt = setInterval(() => {
+                document.getElementById('progress-text').innerText = progressSteps[p];
+                p++;
+                if(p >= progressSteps.length) {
+                    clearInterval(progressInt);
+                    setTimeout(showSuccess, 800);
+                }
+            }, 800);
+        }
+
+        function showSuccess() {
+            document.getElementById('step2').classList.add('view-hidden');
+            document.getElementById('step3').classList.remove('view-hidden');
+            startConfetti();
+        }
+
+        function finalize() {
+            window.location.href = offerLink;
+        }
+
+        // Simple Confetti
+        function startConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            let particles = [];
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 7 + 3,
+                    color: ['#FFD700', '#ffffff', '#00ff00', '#0033A0'][Math.floor(Math.random() * 4)],
+                    speed: Math.random() * 5 + 2,
+                    angle: Math.random() * 6.28
+                });
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, 6.28);
+                    ctx.fill();
+                    p.y += p.speed;
+                    p.x += Math.sin(p.angle) * 2;
+                    if(p.y > canvas.height) p.y = -10;
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
     </script>
 </body>
 </html>
